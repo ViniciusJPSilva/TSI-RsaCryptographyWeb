@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criptografia RSA</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="images/icon.ico" type="image/x-icon">
+</head>
+
+<body class="bg-white text-gray-800 scrollbar-custom">
+
+  <!-- Navbar -->
+  <nav id="navbar" class="fixed top-0 w-full z-50 transition-all duration-300">
+    <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+      <a href="#" class="text-xl font-bold text-white">Criptografia Assimétrica - RSA</a>
+      <div class="hidden md:flex space-x-6">
+        <a href="#hero" class="text-white underline-animation">Início</a>
+        <a href="#what-is-rsa" class="text-white underline-animation">O que é RSA?</a>
+        <a href="#why-secure" class="text-white underline-animation">Por que é seguro?</a>
+        <a href="#how-it-works" class="text-white underline-animation">Como funciona?</a>
+        <a href="#about" class="text-white underline-animation">Autores</a>
+      </div>
+      <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+        </svg>
+      </button>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden bg-blue-900">
+      <a href="#hero" class="block text-white py-2 px-4 hover:bg-blue-800">Início</a>
+      <a href="#what-is-rsa" class="block text-white py-2 px-4 hover:bg-blue-800">O que é RSA?</a>
+      <a href="#why-secure" class="block text-white py-2 px-4 hover:bg-blue-800">Por que é seguro?</a>
+      <a href="#how-it-works" class="block text-white py-2 px-4 hover:bg-blue-800">Como funciona?</a>
+      <a href="#about" class="block text-white py-2 px-4 hover:bg-blue-800">Sobre</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="hero" class="gradient-bg h-screen flex items-center justify-center text-white">
+    <div class="text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-8 typed-out">Criptografia RSA</h1>
+      <p class="text-lg md:text-xl mb-8">Segurança e privacidade na era digital</p>
+    </div>
+  </section>
+
+  <!-- What is RSA? -->
+  <section id="what-is-rsa" class="py-16 min-h-screen flex items-center justify-center bg-white">
+    <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="space-y-4 m-auto">
+        <h2 class="text-3xl md:text-4xl font-bold text-blue-900">O que é RSA?</h2>
+        <p class="text-gray-700 text-lg">
+          RSA é um algoritmo de criptografia assimétrica amplamente utilizado para garantir a segurança na troca de
+          informações. Seu nome vem das iniciais de seus criadores: <span class="font-bold text-blue-500">Ron
+            Rivest</span>, <span class="font-bold text-blue-500">Adi Shamir</span> e <span
+            class="font-bold text-blue-500">Leonard Adleman</span>, que o
+          desenvolveram em 1977.
+        </p>
+      </div>
+      <div class="flex justify-center">
+        <img src="./images/rsa.png" alt="RSA Illustration" class="rounded-lg shadow-lg w-full md:w-3/4">
+      </div>
+    </div>
+  </section>
+
+  <!-- Why is RSA Secure? -->
+  <section id="why-secure" class="gradient-bg min-h-screen py-16 flex items-center justify-center bg-gray-50">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-8">Por que o RSA é seguro?</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="p-6 bg-white rounded-lg shadow-lg">
+          <h3 class="text-2xl font-bold text-blue-900">Fatoração difícil <span class="text-4xl">🔒</span></h3>
+          <p class="text-gray-700 mt-5 text-md">O RSA usa dois números primos enormes (tipo de 300 dígitos cada)
+            multiplicados para criar um número ainda maior. Para quebrar o RSA, você precisaria descobrir quais são
+            esses dois primos.
+          </p>
+          <p class="text-blue-700 mt-3 text-sm">Fatorar números tão grandes é como tentar achar duas agulhas num
+            palheiro gigante: mesmo com computadores poderosos, levaria milhares de anos.
+          </p>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow-lg">
+          <h3 class="text-2xl font-bold text-blue-900">Matemática complexa <span class="text-4xl">🔐</span></h3>
+          <p class="text-gray-700 mt-5 text-md">O RSA funciona como um cadeado: você usa a chave pública para "trancar"
+            (criptografar) e a chave privada para "abrir" (descriptografar).
+          </p>
+          <p class="text-blue-700 mt-3 text-sm">O RSA funciona como um cadeado: você usa a chave pública para "trancar"
+            (criptografar) e a chave privada para "abrir" (descriptografar).
+          </p>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow-lg">
+          <h3 class="text-2xl font-bold text-blue-900">Chaves grandes <span class="text-4xl">🔑</span></h3>
+          <p class="text-gray-700 mt-5 text-md">As chaves do RSA são números gigantes (2048 bits ou mais). Quanto maior
+            a chave, mais difícil é quebrar.
+          </p>
+          <p class="text-blue-700 mt-3 text-sm">É como aumentar o tamanho do cadeado: quanto maior, mais tempo levaria
+            para um ladrão tentar todas as combinações.
+          </p>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow-lg">
+          <h3 class="text-2xl font-bold text-blue-900">Primos aleatórios <span class="text-4xl">🔢</span></h3>
+          <p class="text-gray-700 mt-5 text-md">Os dois números primos usados no RSA precisam ser escolhidos de forma
+            aleatória e segura. Se forem previsíveis ou muito próximos, fica mais fácil quebrar o RSA.
+          </p>
+          <p class="text-blue-700 mt-3 text-sm">É como escolher uma senha: se for simples (ex.: "1234"), é fácil
+            adivinhar; se for complexa e aleatória, é quase impossível.
+          </p>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow-lg">
+          <h3 class="text-2xl font-bold text-blue-900">Proteção contra ataques <span class="text-4xl">🛡️</span></h3>
+          <p class="text-gray-700 mt-5 text-md">O RSA pode ser vulnerável se for mal implementado. Por exemplo, se o
+            tempo que leva para criptografar ou descriptografar vazar informações, um hacker pode usar isso para quebrar
+            o sistema.
+          </p>
+          <p class="text-blue-700 mt-3 text-sm">Por isso, os programadores usam técnicas especiais (como padding seguro)
+            para esconder essas informações e proteger o RSA.
+          </p>
+        </div>
+        <div class="p-6 bg-white rounded-lg shadow-lg">
+          <h3 class="text-2xl font-bold text-blue-900">Sem soluções eficientes <span class="text-4xl">⏳</span></h3>
+          <p class="text-gray-700 mt-5 text-md">Até hoje, ninguém descobriu um método rápido para quebrar o RSA sem
+            fatorar o número gigante.
+          </p>
+          <p class="text-blue-700 mt-3 text-sm">É como tentar abrir um cofre sem a combinação: você pode tentar todas as
+            possibilidades, mas levaria uma eternidade.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How Does It Work? -->
+  <section id="how-it-works" class="py-16 min-h-screen flex items-center justify-center bg-white">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-blue-900 mb-8 text-center">Como funciona?</h2>
+      <p class="text-gray-700 text-lg md:text-xl text-center">
+        Para entendermos o processo de geração de chaves e criptografia utilizando o RSA, preencha os campos abaixo com
+        os seguintes dados: dois números primos diferentes, maiores que 10 e menores que 128, e um texto que você deseja
+        criptografar.
+      </p>
+      <form id="prime-form"
+        class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-6 text-center mt-5">
+        <div>
+          <input type="number" id="prime1" class="border border-gray-300 p-2 w-full md:w-auto"
+            placeholder="Digite um número primo">
+        </div>
+        <div>
+          <input type="number" id="prime2" class="border border-gray-300 p-2 w-full md:w-auto"
+            placeholder="Digite outro número primo">
+        </div>
+        <div>
+          <input type="text" id="message" class="border border-gray-300 p-2 w-full md:w-auto"
+            placeholder="Digite um texto" maxlength="10" oninput="validateAscii(event)">
+        </div>
+        <button type="submit" class="bg-blue-900 text-white py-2 px-4 rounded w-full md:w-auto">Criptografar</button>
+      </form>
+      <div id="error-message" class="text-red-500 mt-4 hidden text-center">
+      </div>
+
+      <div id="solution-card"
+        class="mt-10 shadow-xl overflow-card hidden max-h-[400px] overflow-y-aut scrollbar-custom">
+        <div class="grid grid-cols-1 gap-8">
+          <!-- 1° STEP -->
+          <div class="p-6 bg-white rounded-lg shadow-lg">
+            <h3 class="text-2xl font-bold text-blue-900">Escolha dos números primos <span
+                class="text-3xl font-serif">p</span> e
+              <span class="text-3xl font-serif">q</span>
+            </h3>
+            <p class="text-gray-800 mt-5 text-md">Escolha dois números primos distintos p e q.
+            </p>
+            <p id="selected-primes" class="text-center bg-gray-200 p-5 mt-3 text-blue-900 text-4xl font-serif">
+              p = 11 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; q = 17
+            </p>
+            <p class="text-gray-700 mt-3 text-sm">Em aplicações reais do RSA os números primos devem ser da ordem de
+              10<span class="superscript">100</span>.
+            </p>
+          </div>
+
+          <!-- 2° STEP -->
+          <div class="p-6 bg-white rounded-lg shadow-lg">
+            <h3 class="text-2xl font-bold text-blue-900">Módulo <span class="text-3xl font-serif">n</span></h3>
+            <p class="text-gray-800 mt-5 text-md">O módulo n é o produto dos números primos p e q.</p>
+            <p id="module-n" class="text-center bg-gray-200 p-5 mt-3 text-blue-900 text-4xl font-serif ">
+              n = p <mo>×</mo> q <br> n = 11 <mo>×</mo> 17 <br> n = 187
+            </p>
+          </div>
+
+          <!-- 3° STEP -->
+          <div class="p-6 bg-white rounded-lg shadow-lg">
+            <h3 class="text-2xl font-bold text-blue-900">Função de Carmichael <span class="text-3xl">λ(n)</span></h3>
+            <p class="text-gray-800 mt-5 text-md">
+              A Função de Carmichael ajuda a calcular a chave privada <span class="font-bold text-blue-900">d</span>,
+              que permite "desfazer" a criptografia e recuperar a mensagem
+              original.
+            </p>
+            <div class="text-center p-5 mt-3 bg-gray-200 text-blue-900 text-4xl font-serif font-black">
+              <math class="inline-block">
+                <mrow>
+                  <mi>λ</mi>
+                  <mo>(</mo>
+                  <mi>n</mi>
+                  <mo>)</mo>
+                  <mo>=</mo>
+                  <mfrac>
+                    <mrow>
+                      <mo>|</mo>
+                      <mrow>
+                        <mo>(</mo>
+                        <mi>p</mi>
+                        <mo>−</mo>
+                        <mn>1</mn>
+                        <mo>)</mo>
+                        <mo>×</mo>
+                        <mo>(</mo>
+                        <mi>q</mi>
+                        <mo>−</mo>
+                        <mn>1</mn>
+                        <mo>)</mo>
+                      </mrow>
+                      <mo>|</mo>
+                    </mrow>
+                    <mrow>
+                      <mi>MDC</mi>
+                      <mo>(</mo>
+                      <mrow>
+                        <mo>(</mo>
+                        <mi>p</mi>
+                        <mo>−</mo>
+                        <mn>1</mn>
+                        <mo>)</mo>
+                      </mrow>
+                      <mo>,</mo>
+                      <mrow>
+                        <mo>(</mo>
+                        <mi>q</mi>
+                        <mo>−</mo>
+                        <mn>1</mn>
+                        <mo>)</mo>
+                      </mrow>
+                      <mo>)</mo>
+                    </mrow>
+                  </mfrac>
+                </mrow>
+              </math>
+            </div>
+            <div class="text-center p-5 bg-gray-200 text-blue-900 text-4xl font-serif font-black">
+              <math id="carmichael-calc" class="inline-block">
+                <mrow>
+                  <mi>λ</mi>
+                  <mo>(</mo>
+                  <mi>n</mi>
+                  <mo>)</mo>
+                  <mo>=</mo>
+                  <mfrac>
+                    <mrow>
+                      <mo>|</mo>
+                      <mrow>
+                        <mo>(</mo>
+                        <mi class="math-p">p</mi>
+                        <mo>−</mo>
+                        <mn>1</mn>
+                        <mo>)</mo>
+                        <mo>×</mo>
+                        <mo>(</mo>
+                        <mi class="math-q">q</mi>
+                        <mo>−</mo>
+                        <mn>1</mn>
+                        <mo>)</mo>
+                      </mrow>
+                      <mo>|</mo>
+                    </mrow>
+                    <mrow>
+                      <mi>MDC</mi>
+                      <mo>(</mo>
+                      <mrow>
+                        <mo>(</mo>
+                        <mi class="math-p">p</mi>
+                        <mo>−</mo>
+                        <mn>1</mn>
+                        <mo>)</mo>
+                      </mrow>
+                      <mo>,</mo>
+                      <mrow>
+                        <mo>(</mo>
+                        <mi class="math-q">q</mi>
+                        <mo>−</mo>
+                        <mn>1</mn>
+                        <mo>)</mo>
+                      </mrow>
+                      <mo>)</mo>
+                    </mrow>
+                  </mfrac>
+                </mrow>
+              </math>
+            </div>
+            <div class="text-center p-5 bg-gray-200 text-blue-900 text-4xl font-serif font-black">
+              <math class="inline-block">
+                <mrow>
+                  <mi>λ</mi>
+                  <mo>(</mo>
+                  <mi>n</mi>
+                  <mo>)</mo>
+                  <mo>=</mo>
+                  <mi class="math-carmichael">21</mi>
+                </mrow>
+              </math>
+            </div>
+            <p class="text-gray-700 mt-3 text-sm">Essa função garante que apenas quem possui a chave privada <span
+                class="font-bold text-blue-900">d</span> consiga ler a mensagem secreta!
+            </p>
+          </div>
+
+          <!-- 4° STEP -->
+          <div class="p-6 bg-white rounded-lg shadow-lg">
+            <h3 class="text-2xl font-bold text-blue-900">Chave Pública</h3>
+            <p class="text-gray-800 mt-5 text-md">A chave pública é composta pelos números <span
+                class="font-bold text-blue-900">n</span> e <span class="font-bold text-blue-900">e</span>, sendo que
+              <span class="font-bold text-blue-900">e</span>
+              deve ser um número entre <span class="font-bold text-blue-900">1</span> e <span
+                class="font-bold text-blue-900">λ(n)</span> e, ao mesmo tempo, o máximo divisor comum entre <span
+                class="font-bold text-blue-900">e</span> e <span class="font-bold text-blue-900">λ(n)</span>
+              deve ser <span class="font-bold text-blue-900">1</span>, ou seja, <span
+                class="font-bold text-blue-900">e</span> deve ser coprimo com <span
+                class="font-bold text-blue-900">λ(n)</span>.
+            </p>
+            <div class="text-center p-5 mt-3 bg-gray-200 text-blue-900 text-4xl font-serif font-black">
+              <math class="inline-block" xmlns="http://www.w3.org/1998/Math/MathML">
+                <mrow>
+                  <mn>1</mn>
+                  <mo>&lt;</mo>
+                  <mi>e</mi>
+                  <mo>&lt;</mo>
+                  <mi>λ</mi>
+                  <mo>(</mo>
+                  <mi>n</mi>
+                  <mo>)</mo>
+                  <mo>&#xA0;</mo>
+                  <mo>&#x2227;</mo>
+                  <mo>&#xA0;</mo>
+                  <mi>MDC</mi>
+                  <mo>(</mo>
+                  <mi>e</mi>
+                  <mo>,</mo>
+                  <mo>&#xA0;</mo>
+                  <mi>λ</mi>
+                  <mo>(</mo>
+                  <mi>n</mi>
+                  <mo>)</mo>
+                  <mo>)</mo>
+                  <mo>=</mo>
+                  <mn>1</mn>
+                </mrow>
+              </math>
+            </div>
+            <div class="text-center p-5 bg-gray-200 text-blue-900 text-4xl font-serif font-black">
+              <math class="inline-block" xmlns="http://www.w3.org/1998/Math/MathML">
+                <mrow>
+                  <mn>1</mn>
+                  <mo>&lt;</mo>
+                  <mi>e</mi>
+                  <mo>&lt;</mo>
+                  <mo class="math-lambda">80</mo>
+                  <mo>&#xA0;</mo>
+                  <mo>&#x2227;</mo>
+                  <mo>&#xA0;</mo>
+                  <mi>MDC</mi>
+                  <mo>(</mo>
+                  <mi>e</mi>
+                  <mo>,</mo>
+                  <mo class="math-lambda">80</mo>
+                  <mo>)</mo>
+                  <mo>=</mo>
+                  <mn>1</mn>
+                </mrow>
+              </math>
+            </div>
+            <div class="text-center p-5 bg-gray-200 text-blue-900 text-4xl font-serif font-black">
+              <math class="inline-block">
+                <mrow>
+                  <mi>e</mi>
+                  <mo>=</mo>
+                  <mi class="math-e">21</mi>
+                </mrow>
+              </math>
+            </div>
+            <p id="public-key" class="text-2xl font-bold text-blue-900 mt-8 text-center">Chave Pública = (n, e)</p>
+          </div>
+
+          <!-- 5° STEP -->
+          <div class="p-6 bg-white rounded-lg shadow-lg">
+            <h3 class="text-2xl font-bold text-blue-900">Chave Privada</h3>
+            <p class="text-gray-800 mt-5 text-md">A chave privada é composta pelos números <span
+                class="font-bold text-blue-900">n</span> e <span class="font-bold text-blue-900">d</span>, onde <span
+                class="font-bold text-blue-900">d</span> é escolhido para que o produto com <span
+                class="font-bold text-blue-900">e</span> tenha resto <span class="font-bold text-blue-900">1</span> na
+              divisão por <span class="font-bold text-blue-900">λ(n)</span>. Ou seja...
+            </p>
+            <div class="text-center p-5 mt-3 bg-gray-200 text-blue-900 text-4xl font-serif font-black">
+              <math class="inline-block" xmlns="http://www.w3.org/1998/Math/MathML">
+                <mrow>
+                  <mo>(</mo>
+                  <mi>e</mi>
+                  <mo>&#xD7;</mo>
+                  <mi>d</mi>
+                  <mo>)</mo>
+                  <mo>&#xA0;</mo>
+                  <mo>mod</mo>
+                  <mo>&#xA0;</mo>
+                  <mo>(</mo>
+                  <mi>&lambda;</mi>
+                  <mo>(</mo>
+                  <mi>n</mi>
+                  <mo>)</mo>
+                  <mo>)</mo>
+                  <mo>=</mo>
+                  <mn>1</mn>
+                </mrow>
+              </math>
+            </div>
+            <p class="text-gray-800 mt-5 text-md">
+              É possível encontrar <span class="font-bold text-blue-900">d</span>
+              iterando sobre os múltiplos de <span class="font-bold text-blue-900">e</span>, ou seja, percorrendo a
+              tabuada de <span class="font-bold text-blue-900">e</span> até encontrar um valor de <span
+                class="font-bold text-blue-900">d</span> que satisfaça a equação. Essa abordagem é simples e eficiente
+              para chaves pequenas, como 8 bits, devido ao número limitado de tentativas. Contudo, para chaves maiores,
+              essa técnica se torna ineficaz, e métodos mais avançados são necessários.
+            </p>
+            <p class="text-gray-800 mt-5 text-md">
+              Não abordaremos o <span class="font-bold text-blue-900">Algoritmo Extendido de Euclides</span> aqui, mas,
+              caso tenha interesse, leia mais sobre esse método
+              <a class="text-blue-900 underline"
+                href="https://cuboid-burn-1b7.notion.site/Criptografia-Assim-trica-RSA-18777ec5872c805db7e9d446fce005cf"
+                target="_blank">clicando aqui!</a>
+            </p>
+            <p class="text-gray-800 mt-5 text-md">
+              Aplicando o algoritmo encontramos o seguinte valor para <span class="font-bold text-blue-900">d</span>:
+            </p>
+            <div class="text-center p-5 mt-3 bg-gray-200 text-blue-900 text-4xl font-serif font-black">
+              <math class="inline-block" xmlns="http://www.w3.org/1998/Math/MathML">
+                <mrow>
+                  <mo>(</mo>
+                  <mi>e</mi>
+                  <mo>&#xD7;</mo>
+                  <mi>d</mi>
+                  <mo>)</mo>
+                  <mo>&#xA0;</mo>
+                  <mo>mod</mo>
+                  <mo>&#xA0;</mo>
+                  <mo>(</mo>
+                  <mi>&lambda;</mi>
+                  <mo>(</mo>
+                  <mi>n</mi>
+                  <mo>)</mo>
+                  <mo>)</mo>
+                  <mo>=</mo>
+                  <mn>1</mn>
+                </mrow>
+              </math>
+            </div>
+            <div class="text-center p-5 bg-gray-200 text-blue-900 text-4xl font-serif font-black">
+              <math class="inline-block" xmlns="http://www.w3.org/1998/Math/MathML">
+                <mrow>
+                  <mo>(</mo>
+                  <mi class="math-e">12</mi>
+                  <mo>&#xD7;</mo>
+                  <mi class="math-d">33</mi>
+                  <mo>)</mo>
+                  <mo>&#xA0;</mo>
+                  <mo>mod</mo>
+                  <mo>&#xA0;</mo>
+                  <mo>(</mo>
+                  <mi class="math-lambda">12</mi>
+                  <mo>)</mo>
+                  <mo>=</mo>
+                  <mn>1</mn>
+                </mrow>
+              </math>
+            </div>
+            <div class="text-center p-5 bg-gray-200 text-blue-900 text-4xl font-serif font-black">
+              <math class="inline-block" xmlns="http://www.w3.org/1998/Math/MathML">
+                <mrow>
+                  <mi>d</mi>
+                  <mo>=</mo>
+                  <mn class="math-d">1</mn>
+                </mrow>
+              </math>
+            </div>
+            <p id="private-key" class="text-2xl font-bold text-blue-900 mt-8 text-center">Chave Privada = (n, d)</p>
+          </div>
+
+          <!-- 6° STEP -->
+          <div class="p-6 bg-white rounded-lg shadow-lg">
+            <h3 class="text-2xl font-bold text-blue-900">Criptografia</h3>
+            <p class="text-gray-800 mt-5 text-md">
+              Na criptografia RSA, utilizamos a chave pública <span class="font-bold text-blue-900">(n, e)</span> e uma
+              <span class="font-bold text-blue-900">mensagem</span>. Para que o processo funcione, a
+              mensagem deve ser transformada em um número <span class="font-bold text-blue-900">maior ou igual à
+                0</span> e <span class="font-bold text-blue-900">menor que n</span>. Isso garante
+              que o sistema opere corretamente. Portando:
+            </p>
+            <div class="text-center p-5 mt-3 bg-gray-200 text-blue-900 text-4xl font-serif font-black">
+              <math class="inline-block" xmlns="http://www.w3.org/1998/Math/MathML">
+                <mrow>
+                  <mn>0</mn>
+                  <mo>&le;</mo>
+                  <mi>mensagem</mi>
+                  <mo>&lt;</mo>
+                  <mi>n</mi>
+                </mrow>
+              </math>
+            </div>
+            <p class="text-gray-800 mt-5 text-md">
+              Depois que a mensagem é validada, usamos a fórmula de criptografia:
+            </p>
+            <div class="text-center p-5 mt-3 bg-gray-200 text-blue-900 text-4xl font-serif font-black">
+              <math class="inline-block" xmlns="http://www.w3.org/1998/Math/MathML">
+                <mrow>
+                  <mi>c</mi>
+                  <mo>=</mo>
+                  <mrow>
+                    <msup>
+                      <mi>m</mi>
+                      <mi>e</mi>
+                    </msup>
+                  </mrow>
+                  <mo>mod</mo>
+                  <mi>n</mi>
+                </mrow>
+              </math>
+            </div>
+            <p class="text-gray-800 mt-5 text-md">
+              Onde:
+            <ul>
+              <li>
+                <span class="font-bold text-blue-900">c</span> = mensagem criptografada.
+              </li>
+              <li>
+                <span class="font-bold text-blue-900">m</span> = mensagem transformada em número inteiro.
+              </li>
+            </ul>
+            </p>
+            <p class="text-gray-800 mt-5 text-md">
+              Para exemplificar, vamos criptografar a mensagem <span id="text-message"
+                class="font-bold text-blue-900">"mensagem"</span>!
+            </p>
+            <p class="text-gray-800 mt-5 text-md">
+              Primeiro, temos que transformar os caracteres em
+              valores numéricos utilizando a <span id="text-message" class="font-bold text-blue-900">Tabela
+                ASCII</span>.
+            </p>
+            <div id="ascii-table" class="max-w-lg mx-auto mt-5">
+              <table class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+                <thead class="bg-gray-200">
+                  <tr>
+                    <th class="py-2 px-4 text-left text-blue-900">Caractere</th>
+                    <th class="py-2 px-4 text-left text-blue-900">ASCII</th>
+                  </tr>
+                </thead>
+                <tbody id="ascii-table-body" class="divide-y divide-gray-200">
+                  <!-- Rows will be inserted here by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+            <p class="text-gray-800 mt-8 text-md">
+              Utilizando o valor <span id="text-message" class="font-bold text-blue-900">ASCII</span>, transformamos
+              cada um dos caracteres da mensagem em um <span id="text-message"
+                class="font-bold text-blue-900">segredo</span>:
+            </p>
+            <div id="cript-table" class="max-w-2xl mx-auto mt-5">
+              <table class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+                <thead class="bg-gray-200">
+                  <tr>
+                    <th class="py-2 px-4 text-left text-blue-900">Mensagem (ASCII)</th>
+                    <th class="py-2 px-4 text-left text-blue-900">Cálculo</th>
+                    <th class="py-2 px-4 text-left text-blue-900">Segredo</th>
+                  </tr>
+                </thead>
+                <tbody id="cript-table-body" class="divide-y divide-gray-200">
+                  <!-- Rows will be inserted here by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+            <p class="text-gray-800 mt-8 text-md">
+              Com isso, geramos o <span id="text-message" class="font-bold text-blue-900">segredo</span>:
+            </p>
+            <p id="secret-message" class="text-blue-900 mt-5 text-2xl font-bold text-center">
+
+            </p>
+            <p class="text-gray-800 mt-8 text-md">
+              E, convertendo para <span id="text-message" class="font-bold text-blue-900">hexadecimal</span>, geramos a
+              <span id="text-message" class="font-bold text-blue-900">mensagem criptografada</span>:
+            </p>
+            <p id="cript-message" class="text-blue-900 mt-5 text-2xl font-bold text-center">
+
+            </p>
+          </div>
+
+          <!-- 7° STEP -->
+          <div class="p-6 bg-white rounded-lg shadow-lg">
+            <h3 class="text-2xl font-bold text-blue-900">Descriptografia</h3>
+            <p class="text-gray-800 mt-5 text-md">
+              Na descriptografia RSA, utilizamos a chave privada <span class="font-bold text-blue-900">(n, d)</span>
+              para reverter o processo de criptografia.
+            </p>
+            <p class="text-gray-800 mt-5 text-md">
+              Para <span class="font-bold text-blue-900">descriptografar</span>, usamos a fórmula:
+            </p>
+            <div class="text-center p-5 mt-3 bg-gray-200 text-blue-900 text-4xl font-serif font-black">
+              <math class="inline-block" xmlns="http://www.w3.org/1998/Math/MathML">
+                <mrow>
+                  <mi>m</mi>
+                  <mo>=</mo>
+                  <mrow>
+                    <msup>
+                      <mi>c</mi>
+                      <mi>d</mi>
+                    </msup>
+                  </mrow>
+                  <mo>mod</mo>
+                  <mi>n</mi>
+                </mrow>
+              </math>
+            </div>
+            <p class="text-gray-800 mt-5 text-md">
+              Onde:
+            <ul>
+              <li>
+                <span class="font-bold text-blue-900">m</span> = mensagem transformada em número inteiro.
+              </li>
+              <li>
+                <span class="font-bold text-blue-900">c</span> = mensagem criptografada.
+              </li>
+            </ul>
+            </p>
+            <p class="text-gray-800 mt-8 text-md">
+              Para exemplificar, vamos descriptografar a <span id="text-message"
+                class="font-bold text-blue-900">mensagem criptografada</span>:
+            </p>
+            <p id="cript-message" class="text-blue-900 mt-5 text-2xl font-bold text-center">
+
+            </p>
+            <p class="text-gray-800 mt-8 text-md">
+              Convertendo o valor <span id="text-message" class="font-bold text-blue-900">hexadecimal</span>,
+              obtemos o <span id="text-message" class="font-bold text-blue-900">segredo</span>:
+            </p>
+            <p id="secret-message" class="text-blue-900 mt-5 text-2xl font-bold text-center">
+
+            </p>
+            <p class="text-gray-800 mt-5 text-md">
+              Primeiro, temos que descriptografar os valores recebidos e, em seguida, converter o <span
+                class="font-bold text-blue-900">ASCII</span> em seu respectivo <span
+                class="font-bold text-blue-900">caractere</span>. Veja a tabela:
+            </p>
+            <div id="decript-table" class="max-w-2xl mx-auto mt-5">
+              <table class="w-full bg-white shadow-md rounded-lg overflow-hidden">
+                <thead class="bg-gray-200">
+                  <tr>
+                    <th class="py-2 px-4 text-left text-blue-900">Segredo</th>
+                    <th class="py-2 px-4 text-left text-blue-900">Cálculo</th>
+                    <th class="py-2 px-4 text-left text-blue-900">ASCII</th>
+                    <th class="py-2 px-4 text-left text-blue-900">Caractere</th>
+                  </tr>
+                </thead>
+                <tbody id="decript-table-body" class="divide-y divide-gray-200">
+                  <!-- Rows will be inserted here by JavaScript -->
+                </tbody>
+              </table>
+            </div>
+            <p class="text-gray-800 mt-8 text-md">
+              Com isso, descrobrimos a <span id="text-message" class="font-bold text-blue-900">mensagem
+                criptografada</span>:
+            </p>
+            <p id="decript-message" class="text-blue-900 mt-5 text-2xl font-bold text-center">
+
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About the Authors -->
+  <section id="about" class="gradient-bg min-h-screen py-16 flex items-center justify-center bg-gray-50">
+    <div class="container mx-auto px-6">
+      <h2 class="text-3xl md:text-4xl font-bold text-white mb-8 text-center">Sobre os Autores</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <a href="https://github.com/GabrielBarbosaAfo" target="_blank"
+          class="p-6 bg-white rounded-lg shadow-lg hover:scale-105 transition-all hover:opacity-80">
+          <img src="images/afonso.jpeg" alt="Author 1" class="mx-auto rounded-full mb-4 h-60">
+          <h3 class="text-2xl font-bold text-blue-900 text-center">Gabriel Afonso</h3>
+          <p class="text-gray-700 text-center">Desenvolvedor de software com foco em redes e programação em C, Python
+            e JavaScript.</p>
+        </a>
+        <a href="https://github.com/ViniciusJPSilva" target="_blank"
+          class="p-6 bg-white rounded-lg shadow-lg hover:scale-105 transition-all hover:opacity-80">
+          <img src="images/vinicius.png" alt="Author 2" class="mx-auto rounded-full mb-4 h-60">
+          <h3 class="text-2xl font-bold text-blue-900 text-center">Vinícius José</h3>
+          <p class="text-gray-700 text-center">Desenvolvedor de software com foco em sistemas distribuídos e
+            aplicações web.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-900 text-white py-8">
+    <div class="container mx-auto px-6 text-center">
+      <p>&copy; 2025 Criptografia RSA. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

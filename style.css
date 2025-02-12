@@ -1,0 +1,105 @@
+*,
+html {
+    scroll-behavior: smooth !important;
+}
+
+body {
+    font-family: 'Fira Code', monospace;
+}
+
+.gradient-bg {
+    background: linear-gradient(135deg, #1E3A8A, #3B82F6);
+    animation: gradient 10s ease infinite;
+}
+
+.overflow-card {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.superscript {
+    position: relative;
+    top: -0.5em;
+    font-size: 80%;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.typed-out {
+    overflow: hidden;
+    border-right: .1em solid white;
+    white-space: nowrap;
+    padding-right: 10px;
+    width: 0;
+    animation: typing 1.5s steps(20, end) forwards, blink .9s infinite;
+}
+
+@keyframes typing {
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+@keyframes blink {
+    from {
+        border-color: transparent;
+    }
+
+    to {
+        border-color: white;
+    }
+}
+
+.underline-animation {
+    background: linear-gradient(currentColor 0 0) bottom left/ var(--underline-width, 0%) 0.1em no-repeat;
+    color: #FFFFFF;
+    display: inline-block;
+    padding: 0 .5em 0.2em;
+    text-decoration: none;
+    transition: background-size 0.5s;
+}
+
+.underline-animation:hover {
+    --underline-width: 100%;
+}
+
+/* Custom scrollbar styles */
+.scrollbar-custom::-webkit-scrollbar {
+    width: 12px;
+    /* Width of the scrollbar */
+}
+
+.scrollbar-custom::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    /* Color of the track */
+    border-radius: 6px;
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb {
+    background: #1e3a8a;
+    /* Color of the scrollbar thumb */
+    border-radius: 6px;
+    border: 3px solid #f1f1f1;
+    /* Padding around the thumb */
+}
+
+.scrollbar-custom::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    /* Color of the thumb on hover */
+}
